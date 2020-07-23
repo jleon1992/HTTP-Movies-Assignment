@@ -100,3 +100,23 @@ body {
   color: red;
   text-align: center;
 }
+
+/* form{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+} */
+label{
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+.movieForm{
+  display: flex;
+  justify-content: center;
+}
+
+.form{
+  width: 50%;
+}

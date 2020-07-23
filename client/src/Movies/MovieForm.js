@@ -22,8 +22,15 @@ export const MovieForm = props => {
           })
           .catch((err) => console.log(err.response));
       };
-    
+    const stars = formValues.stars.slice()
 
+      const starChangeHandler = (e, index) => {
+        stars[index] = e.target.value        
+        setFormvalues({
+            ...formValues,
+            stars: stars
+        })
+      }
       const changeHandler = e => {
           const {name, value} = e.target
           setFormvalues({
@@ -35,7 +42,6 @@ export const MovieForm = props => {
       }
 
   
-
       const onSubmit = e => {
           e.preventDefault()
           props.putMovie(params.id, formValues)
@@ -47,32 +53,48 @@ export const MovieForm = props => {
       }, [params.id]);
 
     return (
-        <div>
+        <div className='movieForm'>
             
             
-            <form onSubmit={onSubmit}>
-            <label>
-                director: 
-          
-                <input
-                type='text'
-                name='director'
-                value={formValues.director}
-                onChange={changeHandler}
-                />
-            
-            </label>
-            <label>
-                title: 
-                <input
-                type='text'
-                name='title'
-                value={formValues.title}
-                onChange={changeHandler}
-                />
-            </label>
-            
-            <button>Update</button>
+            <form onSubmit={onSubmit} className='form'>
+                <label>
+                    
+                    <b>Director: </b>
+                    <input
+                    type='text'
+                    name='director'
+                    value={formValues.director}
+                    onChange={changeHandler}
+                    />
+                
+                </label>
+                <label>
+                    <b>Title: </b>
+                    <input
+                    type='text'
+                    name='title'
+                    value={formValues.title}
+                    onChange={changeHandler}
+                    />
+                </label>
+                <div >
+                    <label >
+                        <b>Actors</b>
+                        {formValues.stars.map((star, index) => {
+                        return(
+                        <input
+                        type='text'
+                        value={star}
+                        onChange={(e) => {starChangeHandler(e, index)} }
+                        />
+                        )
+                        
+                    })}
+                    </label>
+                </div>
+                
+                
+                <button>Update</button>
 
                
             </form>

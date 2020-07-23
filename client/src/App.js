@@ -53,6 +53,10 @@ const App = () => {
       <Route path="/update-movie/:id">
         <MovieForm putMovie={putMovie} setMovieList={setMovieList} />
       </Route>
+
+      {/* <Route path='/add-movie'>
+        <AddMovieForm />
+      </Route> */}
     </>
   );
 };
